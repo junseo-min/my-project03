@@ -1,195 +1,170 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="개인 포트폴리오 웹사이트 - 개발자 소개, 프로젝트, 연락처" />
-  <title>My Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>오늘 뭐 먹지? | 배민 감성 캠퍼스 학식로그</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- 헤더 & 네비게이션 -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="logo" aria-label="홈으로 이동">
-        <span class="logo-bracket">&lt;</span>Dev<span class="logo-bracket">/&gt;</span>
-      </a>
-      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
+  <!-- 헤더 영역 (Baemin 2.0 Bright Mint Accent 적용) -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="#hero">🛵 캠퍼스 학식로그</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <nav id="main-nav" class="main-nav" role="navigation" aria-label="주요 메뉴">
-        <ul class="nav-list">
-          <li><a href="#about" class="nav-link">ABOUT</a></li>
-          <li><a href="#projects" class="nav-link">PROJECTS</a></li>
-          <li><a href="#contact" class="nav-link">CONTACT</a></li>
-          <li><a href="#add emnu" class="nav-link">추가된 메뉴</a></li>
+      <nav id="navbar">
+        <ul>
+          <li><a href="#recommend" class="nav-link">취향별 추천</a></li>
+          <li><a href="#menu-board" class="nav-link">오늘의 학식판</a></li>
+          <li><a href="#reviews" class="nav-link">솔직 별점 후기</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <!-- 메인 콘텐츠 영역 -->
   <main>
-
-    <!-- 히어로 섹션 -->
-    <section class="hero" aria-label="소개 배너">
-      <div class="container hero-inner">
-        <p class="hero-greeting">안녕하세요, 저는</p>
-        <h1 class="hero-name">홍길동<span class="hero-accent">입니다.</span></h1>
-        <p class="hero-role">주니어 프론트엔드 개발자</p>
+    <!-- 히어로 배너 (배민 특유의 위트와 따뜻함) -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <span class="badge">식기 전에 골라드립니다 ⚡</span>
+        <h1>"오늘 점심 뭐 먹지?"<br><span class="highlight">발품 팔지 말고 1초 만에 픽!</span></h1>
         <p class="hero-desc">
-          사용자 경험을 최우선으로 생각하며,<br />
-          깔끔하고 효율적인 코드를 지향합니다.
+          식당마다 메뉴판 찾아 헤매지 마세요. 우리 학교 모든 학식 메뉴와 취향 저격 추천을 한눈에!
         </p>
-        <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-          <a href="#contact" class="btn btn-outline">연락하기</a>
+        <div class="hero-buttons">
+          <a href="#recommend" class="btn-primary">취향별 1초 추천받기 🎯</a>
+          <a href="#menu-board" class="btn-secondary">전체 메뉴 둘러보기</a>
         </div>
       </div>
     </section>
 
-    <!-- ABOUT 섹션 -->
-    <section id="about" class="section section-about" aria-labelledby="about-heading">
+    <!-- 1. 취향별 1초 추천 섹션 -->
+    <section id="recommend" class="section recommend-section">
       <div class="container">
-        <h2 id="about-heading" class="section-title">ABOUT</h2>
-        <div class="about-grid">
-          <div class="about-image-wrap">
-            <div class="about-avatar" aria-hidden="true">
-              <span>👨‍💻</span>
+        <div class="section-header">
+          <h2 class="section-title">오늘의 취향 저격 추천기</h2>
+          <p class="section-subtitle">지금 끌리는 맛 버튼을 콕 눌러보세요. 점심 메뉴를 똑소리 나게 골라드려요!</p>
+        </div>
+
+        <div class="filter-btn-group">
+          <button class="btn-taste" data-taste="spicy">🌶️ 매운 거 당겨!</button>
+          <button class="btn-taste" data-taste="heavy">🥩 든든한 고기/밥!</button>
+          <button class="btn-taste" data-taste="light">🥗 가볍고 산뜻한 거!</button>
+          <button class="btn-taste btn-random" data-taste="random">🎲 아무거나 랜덤!</button>
+        </div>
+
+        <!-- 추천 결과 카드 표시 영역 -->
+        <div id="recommendResult" class="recommend-result-card" style="display: none;">
+          <div class="recommend-badge" id="recBadge">오늘의 배민 픽!</div>
+          <h3 id="recMenuName">메뉴 이름</h3>
+          <p class="rec-restaurant" id="recRestaurant">식당 이름 • 운영시간</p>
+          <p class="rec-price" id="recPrice">0,000원</p>
+          <p class="rec-desc" id="recDesc">메뉴 상세 설명</p>
+          <div class="rec-action">
+            <button id="rePickBtn" class="btn-subtle">다시 뽑기 🔄</button>
+            <a href="#reviews" class="btn-primary-small">이 메뉴 리뷰 쓰기 ⭐</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 교내 식당별 오늘 메뉴판 -->
+    <section id="menu-board" class="section bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">식당별 오늘 메뉴판</h2>
+          <p class="section-subtitle">교내 주요 식당의 실시간 중식 메뉴를 확인하세요.</p>
+        </div>
+
+        <!-- 식당 카테고리 탭 -->
+        <div class="restaurant-tabs">
+          <button class="tab-btn active" data-tab="all">전체 식당</button>
+          <button class="tab-btn" data-tab="student">학생회관 식당</button>
+          <button class="tab-btn" data-tab="dorm">기숙사 식당</button>
+          <button class="tab-btn" data-tab="faculty">교직원/중앙 식당</button>
+        </div>
+
+        <!-- 메뉴 카드 그리드 (자바스크립트 렌더링) -->
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <!-- 3. 별점 및 한줄평 리뷰 섹션 -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">학식 솔직 별점 & 후기</h2>
+          <p class="section-subtitle">오늘 먹은 메뉴의 맛은 어땠나요? 다음 신입생들을 위해 별점을 남겨주세요!</p>
+        </div>
+
+        <div class="review-layout">
+          <!-- 리뷰 작성 폼 -->
+          <div class="review-form-container">
+            <h3>별점 남기기</h3>
+            <form id="reviewForm" class="review-form">
+              <div class="form-group">
+                <label for="reviewMenuSelect">메뉴 선택</label>
+                <select id="reviewMenuSelect" required>
+                  <option value="">메뉴를 선택해주세요</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="nickname">작성자 닉네임</label>
+                <input type="text" id="nickname" placeholder="예: 26학번 새내기" required>
+              </div>
+
+              <div class="form-group">
+                <label>별점 평가</label>
+                <div class="star-rating" id="starRating">
+                  <span class="star" data-rating="1">★</span>
+                  <span class="star" data-rating="2">★</span>
+                  <span class="star" data-rating="3">★</span>
+                  <span class="star" data-rating="4">★</span>
+                  <span class="star" data-rating="5">★</span>
+                </div>
+                <input type="hidden" id="selectedRating" value="5">
+              </div>
+
+              <div class="form-group">
+                <label for="reviewComment">한줄평</label>
+                <textarea id="reviewComment" rows="3" placeholder="예: 양도 넉넉하고 돈까스가 바삭해서 완전 만족했어요!" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-100">리뷰 등록하기 ✍️</button>
+            </form>
+          </div>
+
+          <!-- 등록된 리뷰 목록 -->
+          <div class="review-list-container">
+            <div class="review-list-header">
+              <h3>최신 학식 후기 (<span id="reviewCount">0</span>)</h3>
             </div>
-          </div>
-          <div class="about-content">
-            <h3 class="about-subtitle">저를 소개합니다</h3>
-            <p class="about-text">
-              저는 현재 컴퓨터공학을 전공 중인 1학년 학생으로, 웹 개발에 열정을 가지고 있습니다.
-              HTML, CSS, JavaScript를 기반으로 사용자 친화적인 웹 경험을 만드는 것을 좋아합니다.
-            </p>
-            <p class="about-text">
-              매일 조금씩 성장하며 더 나은 개발자가 되기 위해 꾸준히 공부하고 있습니다.
-              새로운 기술을 배우고 도전하는 것을 즐깁니다.
-            </p>
-            <ul class="skills-list" aria-label="기술 스택">
-              <li class="skill-tag">HTML5</li>
-              <li class="skill-tag">CSS3</li>
-              <li class="skill-tag">JavaScript</li>
-              <li class="skill-tag">Git</li>
-              <li class="skill-tag">Figma</li>
-              <li class="skill-tag">React (학습 중)</li>
-            </ul>
+            <div class="review-items" id="reviewItems"></div>
           </div>
         </div>
       </div>
     </section>
-
-    <!-- PROJECTS 섹션 -->
-    <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
-      <div class="container">
-        <h2 id="projects-heading" class="section-title">PROJECTS</h2>
-        <div class="projects-grid">
-
-          <article class="project-card" aria-label="프로젝트 1">
-            <div class="card-icon" aria-hidden="true">🛍️</div>
-            <h3 class="card-title">쇼핑몰 랜딩페이지</h3>
-            <p class="card-desc">
-              HTML과 CSS만을 사용하여 반응형 쇼핑몰 랜딩 페이지를 제작했습니다.
-              Grid와 Flexbox를 활용한 레이아웃 구성이 핵심입니다.
-            </p>
-            <ul class="card-tags" aria-label="사용 기술">
-              <li>HTML</li><li>CSS</li><li>Flexbox</li>
-            </ul>
-            <a href="#" class="card-link" aria-label="쇼핑몰 랜딩페이지 보기">보기 →</a>
-          </article>
-
-          <article class="project-card" aria-label="프로젝트 2">
-            <div class="card-icon" aria-hidden="true">📋</div>
-            <h3 class="card-title">To-Do 리스트 앱</h3>
-            <p class="card-desc">
-              JavaScript를 활용하여 할 일 추가·삭제·완료 처리가 가능한
-              To-Do 리스트 웹앱을 구현했습니다.
-            </p>
-            <ul class="card-tags" aria-label="사용 기술">
-              <li>HTML</li><li>CSS</li><li>JavaScript</li>
-            </ul>
-            <a href="#" class="card-link" aria-label="To-Do 리스트 앱 보기">보기 →</a>
-          </article>
-
-          <article class="project-card" aria-label="프로젝트 3">
-            <div class="card-icon" aria-hidden="true">🌤️</div>
-            <h3 class="card-title">날씨 위젯</h3>
-            <p class="card-desc">
-              공공 날씨 API를 연동하여 현재 위치 기반 날씨 정보를 보여주는
-              위젯 페이지를 제작했습니다.
-            </p>
-            <ul class="card-tags" aria-label="사용 기술">
-              <li>HTML</li><li>CSS</li><li>API</li>
-            </ul>
-            <a href="#" class="card-link" aria-label="날씨 위젯 보기">보기 →</a>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT 섹션 -->
-    <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
-    <!-- add menu 섹션 -->
-    <section id="add menu" class="section section-contact" aria-labelledby="contact-heading">
-      <div class="container">
-        <h2 id="contact-heading" class="section-title">CONTACT</h2>
-        <p class="contact-intro">
-          프로젝트 협업이나 궁금한 점이 있으시면 언제든지 연락주세요!
-        </p>
-        <form class="contact-form" action="#" method="post" novalidate aria-label="연락처 폼">
-          <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required autocomplete="name" />
-          </div>
-          <div class="form-group">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required autocomplete="email" />
-          </div>
-          <div class="form-group">
-            <label for="message">메시지</label>
-            <textarea id="message" name="message" rows="5" placeholder="메시지를 입력하세요" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary btn-full">보내기</button>
-        </form>
-        <ul class="contact-links" aria-label="소셜 링크">
-          <li><a href="mailto:example@email.com" aria-label="이메일 보내기">📧 example@email.com</a></li>
-          <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필">🐙 GitHub</a></li>
-        </ul>
-      </div>
-    </section>
-
   </main>
 
-  <!-- 푸터 -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container footer-inner">
-      <p>&copy; 2026 홍길동. All rights reserved.</p>
-      <p class="footer-sub">Made with ❤️ using HTML &amp; CSS</p>
+  <!-- 푸터 영역 -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2026 캠퍼스 학식로그. 배고픈 신입생의 점심시간을 응원합니다.</p>
+      <div class="footer-links">
+        <a href="#hero">맨 위로 이동 ↑</a>
+      </div>
     </div>
   </footer>
 
-  <script>
-    /* 햄버거 메뉴 토글 (인라인 JS - 별도 파일 불필요한 최소 기능) */
-    const toggle = document.querySelector('.nav-toggle');
-    const nav    = document.querySelector('.main-nav');
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      nav.classList.toggle('is-open');
-    });
-    /* 네비게이션 링크 클릭 시 메뉴 닫기 */
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        toggle.setAttribute('aria-expanded', 'false');
-        nav.classList.remove('is-open');
-      });
-    });
-  </script>
-
+  <!-- 자바스크립트 연결 -->
+  <script src="myjs.js"></script>
 </body>
 </html>

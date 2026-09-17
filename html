@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>학식 뭐 먹지? | 캠퍼스 오늘의 학식 추천 도우미</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 헤더 영역 (푸른 계열 배경색 및 네비게이션) -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <a href="#hero">🍱 캠퍼스 학식로그</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="navbar">
+        <ul>
+          <li><a href="#recommend" class="nav-link">취향별 메뉴 추천</a></li>
+          <li><a href="#menu-board" class="nav-link">식당별 오늘 메뉴</a></li>
+          <li><a href="#reviews" class="nav-link">별점 리뷰</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main>
+    <!-- 히어로 배너 -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <span class="badge">신입생 맞춤 점심 고민 해결사 🎓</span>
+        <h1>"오늘 점심 뭐 먹지?"<br><span class="highlight">발품 팔지 말고 1초 만에 확인!</span></h1>
+        <p class="hero-desc">
+          식당마다 다른 메뉴판을 찾아 헤매지 마세요. 교내 모든 식당 메뉴와 취향별 추천을 한곳에서 제공합니다.
+        </p>
+        <div class="hero-buttons">
+          <a href="#recommend" class="btn-primary">취향별 즉시 추천받기 🎯</a>
+          <a href="#menu-board" class="btn-secondary">전체 메뉴 둘러보기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. 취향별 1초 추천 섹션 -->
+    <section id="recommend" class="section recommend-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">오늘의 취향 맞춤 추천기</h2>
+          <p class="section-subtitle">끌리는 맛 버튼을 눌러보세요! 점심 메뉴를 콕 집어 추천해 드려요.</p>
+        </div>
+
+        <div class="filter-btn-group">
+          <button class="btn-taste" data-taste="spicy">🌶️ 매운 거 당겨!</button>
+          <button class="btn-taste" data-taste="heavy">🥩 든든한 고기/밥!</button>
+          <button class="btn-taste" data-taste="light">🥗 가볍고 산뜻한 거!</button>
+          <button class="btn-taste btn-random" data-taste="random">🎲 아무거나 랜덤!</button>
+        </div>
+
+        <!-- 추천 결과 카드 표시 영역 -->
+        <div id="recommendResult" class="recommend-result-card" style="display: none;">
+          <div class="recommend-badge" id="recBadge">오늘의 추천 픽</div>
+          <h3 id="recMenuName">메뉴 이름</h3>
+          <p class="rec-restaurant" id="recRestaurant">식당 이름 • 운영시간</p>
+          <p class="rec-price" id="recPrice">0,000원</p>
+          <p class="rec-desc" id="recDesc">메뉴 상세 설명</p>
+          <div class="rec-action">
+            <button id="rePickBtn" class="btn-subtle">다시 뽑기 🔄</button>
+            <a href="#reviews" class="btn-primary-small">이 메뉴 리뷰 쓰기 ⭐</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 교내 식당별 오늘 메뉴판 -->
+    <section id="menu-board" class="section bg-white">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">식당별 오늘 메뉴판</h2>
+          <p class="section-subtitle">교내 주요 식당의 실시간 중식 메뉴를 확인하세요.</p>
+        </div>
+
+        <!-- 식당 카테고리 탭 -->
+        <div class="restaurant-tabs">
+          <button class="tab-btn active" data-tab="all">전체 식당</button>
+          <button class="tab-btn" data-tab="student">학생회관 식당</button>
+          <button class="tab-btn" data-tab="dorm">기숙사 식당</button>
+          <button class="tab-btn" data-tab="faculty">교직원/중앙 식당</button>
+        </div>
+
+        <!-- 메뉴 카드 그리드 (자바스크립트 렌더링) -->
+        <div class="menu-grid" id="menuGrid"></div>
+      </div>
+    </section>
+
+    <!-- 3. 별점 및 한줄평 리뷰 섹션 -->
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">학식 솔직 별점 & 후기</h2>
+          <p class="section-subtitle">오늘 먹은 메뉴의 맛은 어땠나요? 다음 신입생들을 위해 별점을 남겨주세요!</p>
+        </div>
+
+        <div class="review-layout">
+          <!-- 리뷰 작성 폼 -->
+          <div class="review-form-container">
+            <h3>별점 남기기</h3>
+            <form id="reviewForm" class="review-form">
+              <div class="form-group">
+                <label for="reviewMenuSelect">메뉴 선택</label>
+                <select id="reviewMenuSelect" required>
+                  <option value="">메뉴를 선택해주세요</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="nickname">작성자 닉네임</label>
+                <input type="text" id="nickname" placeholder="예: 26학번 새내기" required>
+              </div>
+
+              <div class="form-group">
+                <label>별점 평가</label>
+                <div class="star-rating" id="starRating">
+                  <span class="star" data-rating="1">★</span>
+                  <span class="star" data-rating="2">★</span>
+                  <span class="star" data-rating="3">★</span>
+                  <span class="star" data-rating="4">★</span>
+                  <span class="star" data-rating="5">★</span>
+                </div>
+                <input type="hidden" id="selectedRating" value="5">
+              </div>
+
+              <div class="form-group">
+                <label for="reviewComment">한줄평</label>
+                <textarea id="reviewComment" rows="3" placeholder="예: 양도 넉넉하고 돈까스가 바삭해서 완전 만족했어요!" required></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-100">리뷰 등록하기 ✍️</button>
+            </form>
+          </div>
+
+          <!-- 등록된 리뷰 목록 -->
+          <div class="review-list-container">
+            <div class="review-list-header">
+              <h3>최신 학식 후기 (<span id="reviewCount">0</span>)</h3>
+            </div>
+            <div class="review-items" id="reviewItems"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 영역 -->
+  <footer>
+    <div class="container footer-content">
+      <p>&copy; 2026 캠퍼스 학식로그. 신입생의 맛있는 점심시간을 응원합니다.</p>
+      <div class="footer-links">
+        <a href="#hero">맨 위로 이동 ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 자바스크립트 연결 -->
+  <script src="myjs.js"></script>
+</body>
+</html>
+
