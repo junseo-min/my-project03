@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="개인 포트폴리오 웹사이트 - 개발자 소개, 프로젝트, 연락처" />
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- 헤더 & 네비게이션 -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="홈으로 이동">
+        <span class="logo-bracket">&lt;</span>Dev<span class="logo-bracket">/&gt;</span>
+      </a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      <nav id="main-nav" class="main-nav" role="navigation" aria-label="주요 메뉴">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link">ABOUT</a></li>
+          <li><a href="#projects" class="nav-link">PROJECTS</a></li>
+          <li><a href="#contact" class="nav-link">CONTACT</a></li>
+          <li><a href="#add emnu" class="nav-link">추가된 메뉴</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- 히어로 섹션 -->
+    <section class="hero" aria-label="소개 배너">
+      <div class="container hero-inner">
+        <p class="hero-greeting">안녕하세요, 저는</p>
+        <h1 class="hero-name">홍길동<span class="hero-accent">입니다.</span></h1>
+        <p class="hero-role">주니어 프론트엔드 개발자</p>
+        <p class="hero-desc">
+          사용자 경험을 최우선으로 생각하며,<br />
+          깔끔하고 효율적인 코드를 지향합니다.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
+          <a href="#contact" class="btn btn-outline">연락하기</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT 섹션 -->
+    <section id="about" class="section section-about" aria-labelledby="about-heading">
+      <div class="container">
+        <h2 id="about-heading" class="section-title">ABOUT</h2>
+        <div class="about-grid">
+          <div class="about-image-wrap">
+            <div class="about-avatar" aria-hidden="true">
+              <span>👨‍💻</span>
+            </div>
+          </div>
+          <div class="about-content">
+            <h3 class="about-subtitle">저를 소개합니다</h3>
+            <p class="about-text">
+              저는 현재 컴퓨터공학을 전공 중인 1학년 학생으로, 웹 개발에 열정을 가지고 있습니다.
+              HTML, CSS, JavaScript를 기반으로 사용자 친화적인 웹 경험을 만드는 것을 좋아합니다.
+            </p>
+            <p class="about-text">
+              매일 조금씩 성장하며 더 나은 개발자가 되기 위해 꾸준히 공부하고 있습니다.
+              새로운 기술을 배우고 도전하는 것을 즐깁니다.
+            </p>
+            <ul class="skills-list" aria-label="기술 스택">
+              <li class="skill-tag">HTML5</li>
+              <li class="skill-tag">CSS3</li>
+              <li class="skill-tag">JavaScript</li>
+              <li class="skill-tag">Git</li>
+              <li class="skill-tag">Figma</li>
+              <li class="skill-tag">React (학습 중)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS 섹션 -->
+    <section id="projects" class="section section-projects" aria-labelledby="projects-heading">
+      <div class="container">
+        <h2 id="projects-heading" class="section-title">PROJECTS</h2>
+        <div class="projects-grid">
+
+          <article class="project-card" aria-label="프로젝트 1">
+            <div class="card-icon" aria-hidden="true">🛍️</div>
+            <h3 class="card-title">쇼핑몰 랜딩페이지</h3>
+            <p class="card-desc">
+              HTML과 CSS만을 사용하여 반응형 쇼핑몰 랜딩 페이지를 제작했습니다.
+              Grid와 Flexbox를 활용한 레이아웃 구성이 핵심입니다.
+            </p>
+            <ul class="card-tags" aria-label="사용 기술">
+              <li>HTML</li><li>CSS</li><li>Flexbox</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="쇼핑몰 랜딩페이지 보기">보기 →</a>
+          </article>
+
+          <article class="project-card" aria-label="프로젝트 2">
+            <div class="card-icon" aria-hidden="true">📋</div>
+            <h3 class="card-title">To-Do 리스트 앱</h3>
+            <p class="card-desc">
+              JavaScript를 활용하여 할 일 추가·삭제·완료 처리가 가능한
+              To-Do 리스트 웹앱을 구현했습니다.
+            </p>
+            <ul class="card-tags" aria-label="사용 기술">
+              <li>HTML</li><li>CSS</li><li>JavaScript</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="To-Do 리스트 앱 보기">보기 →</a>
+          </article>
+
+          <article class="project-card" aria-label="프로젝트 3">
+            <div class="card-icon" aria-hidden="true">🌤️</div>
+            <h3 class="card-title">날씨 위젯</h3>
+            <p class="card-desc">
+              공공 날씨 API를 연동하여 현재 위치 기반 날씨 정보를 보여주는
+              위젯 페이지를 제작했습니다.
+            </p>
+            <ul class="card-tags" aria-label="사용 기술">
+              <li>HTML</li><li>CSS</li><li>API</li>
+            </ul>
+            <a href="#" class="card-link" aria-label="날씨 위젯 보기">보기 →</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT 섹션 -->
+    <section id="contact" class="section section-contact" aria-labelledby="contact-heading">
+    <!-- add menu 섹션 -->
+    <section id="add menu" class="section section-contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <h2 id="contact-heading" class="section-title">CONTACT</h2>
+        <p class="contact-intro">
+          프로젝트 협업이나 궁금한 점이 있으시면 언제든지 연락주세요!
+        </p>
+        <form class="contact-form" action="#" method="post" novalidate aria-label="연락처 폼">
+          <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" placeholder="이메일을 입력하세요" required autocomplete="email" />
+          </div>
+          <div class="form-group">
+            <label for="message">메시지</label>
+            <textarea id="message" name="message" rows="5" placeholder="메시지를 입력하세요" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full">보내기</button>
+        </form>
+        <ul class="contact-links" aria-label="소셜 링크">
+          <li><a href="mailto:example@email.com" aria-label="이메일 보내기">📧 example@email.com</a></li>
+          <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub 프로필">🐙 GitHub</a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 푸터 -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container footer-inner">
+      <p>&copy; 2026 홍길동. All rights reserved.</p>
+      <p class="footer-sub">Made with ❤️ using HTML &amp; CSS</p>
+    </div>
+  </footer>
+
+  <script>
+    /* 햄버거 메뉴 토글 (인라인 JS - 별도 파일 불필요한 최소 기능) */
+    const toggle = document.querySelector('.nav-toggle');
+    const nav    = document.querySelector('.main-nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      nav.classList.toggle('is-open');
+    });
+    /* 네비게이션 링크 클릭 시 메뉴 닫기 */
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+      });
+    });
+  </script>
+
+</body>
+</html>
